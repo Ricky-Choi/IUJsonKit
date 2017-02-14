@@ -231,6 +231,10 @@ public enum JSON {
     }
 }
 
+public enum JSONError: Error {
+    case invalidString
+}
+
 // initialization
 extension JSON {
     public init(data: Data) throws {
@@ -245,6 +249,14 @@ extension JSON {
         } else {
             self = JSON.null
         }
+    }
+    
+    public init(string: String, encoding: String.Encoding = .utf8) throws {
+        guard let data = string.data(using: encoding) else {
+            throw JSONError.invalidString
+        }
+        
+        try self.init(data: data)
     }
     
     public init(jsonObject: Any) {
