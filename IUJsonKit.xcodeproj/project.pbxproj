@@ -13,6 +13,7 @@
 		9CE5E9121E53315600B2FD4C /* IUJsonKitMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE5E9111E53315600B2FD4C /* IUJsonKitMacTests.swift */; };
 		9CE5E9141E53315600B2FD4C /* IUJsonKitMac.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CE5E9061E53315600B2FD4C /* IUJsonKitMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9CE5E91B1E53316C00B2FD4C /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE5E8CA1E53222300B2FD4C /* JSON.swift */; };
+		9CE5E91D1E53C1F400B2FD4C /* jsonexample.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9CE5E91C1E53C1F400B2FD4C /* jsonexample.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		9CE5E90C1E53315600B2FD4C /* IUJsonKitMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IUJsonKitMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE5E9111E53315600B2FD4C /* IUJsonKitMacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IUJsonKitMacTests.swift; sourceTree = "<group>"; };
 		9CE5E9131E53315600B2FD4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CE5E91C1E53C1F400B2FD4C /* jsonexample.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = jsonexample.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				9CE5E9111E53315600B2FD4C /* IUJsonKitMacTests.swift */,
+				9CE5E91C1E53C1F400B2FD4C /* jsonexample.strings */,
 				9CE5E9131E53315600B2FD4C /* Info.plist */,
 			);
 			path = IUJsonKitMacTests;
@@ -251,6 +254,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CE5E91D1E53C1F400B2FD4C /* jsonexample.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +531,7 @@
 				9CE5E8BB1E53200100B2FD4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9CE5E9151E53315600B2FD4C /* Build configuration list for PBXNativeTarget "IUJsonKitMac" */ = {
 			isa = XCConfigurationList;
@@ -535,6 +540,7 @@
 				9CE5E9171E53315600B2FD4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9CE5E9181E53315600B2FD4C /* Build configuration list for PBXNativeTarget "IUJsonKitMacTests" */ = {
 			isa = XCConfigurationList;
@@ -543,6 +549,7 @@
 				9CE5E91A1E53315600B2FD4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

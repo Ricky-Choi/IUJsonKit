@@ -305,3 +305,23 @@ extension JSON {
         }
     }
 }
+
+extension JSON: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .dictionary(let jsonDictionary):
+            return jsonDictionary.description
+        case .array(let jsonArray):
+            return jsonArray.description
+        case .string(let string):
+            return string.description
+        case .number(let number):
+            return number.description
+        case .bool(let booleanValue):
+            return booleanValue.description
+        case .null:
+            return "null"
+        }
+    }
+}
+

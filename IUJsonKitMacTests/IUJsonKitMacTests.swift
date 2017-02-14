@@ -11,6 +11,8 @@ import XCTest
 
 class IUJsonKitMacTests: XCTestCase {
     
+    let bundle = Bundle.init(for: IUJsonKitMacTests.self)
+    
     override func setUp() {
         super.setUp()
     }
@@ -19,17 +21,21 @@ class IUJsonKitMacTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func testJsonSimple() {
         let string = "{\"name\":\"ricky\"}"
         let json = try! JSON(string: string)
         
-        XCTAssertEqual("ricky", json["name"]!.string)
+        XCTAssertEqual("ricky", json["name"]!.string!)
     }
     
-    func testPerformanceExample() {
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testJsonFile() {
+        let path = bundle.path(forResource: "jsonexample", ofType: "strings")
+        let string = try! String(contentsOfFile: path!)
+        let json = try! JSON(string: string)
+        
+        print(json)
+        
+        XCTAssertEqual("example glossary", json["glossary"]!["title"]!.string!)
     }
     
 }
