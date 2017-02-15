@@ -231,32 +231,37 @@ public enum JSON {
     }
 }
 
-public enum JSONError: Error {
-    case invalidString
-}
-
 // initialization
 extension JSON {
-    public init(data: Data) throws {
+    public init(data: Data) {
         if data.count == 0 {
             self = JSON.null
             return
         }
         
-        let json = try JSONSerialization.jsonObject(with: data, options: [.allowFragments])
-        if let object = JSON.from(object: json) {
+        if let json = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]), let object = JSON.from(object: json) {
             self = object
         } else {
             self = JSON.null
         }
     }
     
-    public init(string: String, encoding: String.Encoding = .utf8) throws {
+    public init(string: String, encoding: String.Encoding = .utf8) {
         guard let data = string.data(using: encoding) else {
-            throw JSONError.invalidString
+            self = JSON.null
+            return
         }
         
-        try self.init(data: data)
+        if data.count == 0 {
+            self = JSON.null
+            return
+        }
+        
+        if let json = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]), let object = JSON.from(object: json) {
+            self = object
+        } else {
+            self = JSON.null
+        }
     }
     
     public init(jsonObject: Any) {
@@ -278,6 +283,21 @@ extension JSON {
         } catch {
             return nil
         }
+    }
+}
+
+extension JSON: ExpressibleByStringLiteral {
+    public init(stringLiteral value: String) {
+        self.init(string: value)
+        
+    }
+    
+    public init(unicodeScalarLiteral value: String) {
+        self.init(string: value)
+    }
+    
+    public init(extendedGraphemeClusterLiteral value: String) {
+        self.init(string: value)
     }
 }
 

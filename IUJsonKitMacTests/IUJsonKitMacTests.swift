@@ -22,8 +22,7 @@ class IUJsonKitMacTests: XCTestCase {
     }
     
     func testJsonSimple() {
-        let string = "{\"name\":\"ricky\"}"
-        let json = try! JSON(string: string)
+        let json: JSON = "{\"name\":\"ricky\"}"
         
         print(json)
         
@@ -33,7 +32,7 @@ class IUJsonKitMacTests: XCTestCase {
     func testJsonFile() {
         let path = bundle.path(forResource: "jsonexample", ofType: nil)
         let string = try! String(contentsOfFile: path!)
-        let json = try! JSON(string: string)
+        let json = JSON(string: string)
         
         print(json)
         
