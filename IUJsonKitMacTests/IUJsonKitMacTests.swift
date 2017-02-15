@@ -25,17 +25,19 @@ class IUJsonKitMacTests: XCTestCase {
         let string = "{\"name\":\"ricky\"}"
         let json = try! JSON(string: string)
         
+        print(json)
+        
         XCTAssertEqual("ricky", json["name"]!.string!)
     }
     
     func testJsonFile() {
-        let path = bundle.path(forResource: "jsonexample", ofType: "strings")
+        let path = bundle.path(forResource: "jsonexample", ofType: nil)
         let string = try! String(contentsOfFile: path!)
         let json = try! JSON(string: string)
         
         print(json)
         
-        XCTAssertEqual("example glossary", json["glossary"]!["title"]!.string!)
+        XCTAssertEqual(250, json["widget"]!["image"]!["hOffset"]!.int!)
     }
     
 }

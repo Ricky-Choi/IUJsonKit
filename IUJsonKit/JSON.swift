@@ -308,17 +308,70 @@ extension JSON {
 
 extension JSON: CustomStringConvertible {
     public var description: String {
+        return prettyPrint()
+    }
+    
+    private func prettyPrint(tab tabCount: Int = 0) -> String {
         switch self {
         case .dictionary(let jsonDictionary):
-            return jsonDictionary.description
+            var returnString = "{\n"
+            
+            for (i, d) in jsonDictionary.enumerated() {
+                for _ in 0...tabCount {
+                    returnString += "\t"
+                }
+                
+                returnString += "\"\(d.key)\" : \(d.value.prettyPrint(tab: tabCount + 1))"
+                
+                if i < jsonDictionary.count - 1 {
+                    returnString += ",\n"
+                } else {
+                    returnString += "\n"
+                }
+            }
+            
+            for _ in 0..<tabCount {
+                returnString += "\t"
+            }
+            
+            returnString += "}"
+            
+            return returnString
+        
         case .array(let jsonArray):
-            return jsonArray.description
+            var returnString = "[\n"
+            
+            for (i, v) in jsonArray.enumerated() {
+                for _ in 0...tabCount {
+                    returnString += "\t"
+                }
+                
+                returnString += "\(v.prettyPrint(tab: tabCount + 1))"
+                
+                if i < jsonArray.count - 1 {
+                    returnString += ",\n"
+                } else {
+                    returnString += "\n"
+                }
+            }
+            
+            for _ in 0..<tabCount {
+                returnString += "\t"
+            }
+            
+            returnString += "]"
+            
+            return returnString
+        
         case .string(let string):
-            return string.description
+            return "\"\(string)\""
+        
         case .number(let number):
-            return number.description
+            return "\(number)"
+        
         case .bool(let booleanValue):
-            return booleanValue.description
+            return booleanValue ? "true" : "false"
+        
         case .null:
             return "null"
         }
