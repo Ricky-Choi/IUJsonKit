@@ -376,5 +376,14 @@ extension JSON: CustomStringConvertible {
             return "null"
         }
     }
+    
+    public static func jsonString(for jsonObject: Any, pretty: Bool = true) -> String? {
+        let options: JSONSerialization.WritingOptions = pretty ? .prettyPrinted : []
+        guard JSONSerialization.isValidJSONObject(jsonObject), let data = try? JSONSerialization.data(withJSONObject: jsonObject, options: options) else {
+            return nil
+        }
+        
+        return String(data: data, encoding: .utf8)
+    }
 }
 
