@@ -311,17 +311,17 @@ extension JSON: CustomStringConvertible {
         return prettyPrint()
     }
     
-    private func prettyPrint(tab tabCount: Int = 0) -> String {
+    public func prettyPrint(indent: String = "\t", tab tabCount: Int = 0) -> String {
         switch self {
         case .dictionary(let jsonDictionary):
             var returnString = "{\n"
             
             for (i, d) in jsonDictionary.enumerated() {
                 for _ in 0...tabCount {
-                    returnString += "\t"
+                    returnString += indent
                 }
                 
-                returnString += "\"\(d.key)\" : \(d.value.prettyPrint(tab: tabCount + 1))"
+                returnString += "\"\(d.key)\" : \(d.value.prettyPrint(indent: indent, tab: tabCount + 1))"
                 
                 if i < jsonDictionary.count - 1 {
                     returnString += ",\n"
@@ -331,7 +331,7 @@ extension JSON: CustomStringConvertible {
             }
             
             for _ in 0..<tabCount {
-                returnString += "\t"
+                returnString += indent
             }
             
             returnString += "}"
@@ -343,10 +343,10 @@ extension JSON: CustomStringConvertible {
             
             for (i, v) in jsonArray.enumerated() {
                 for _ in 0...tabCount {
-                    returnString += "\t"
+                    returnString += indent
                 }
                 
-                returnString += "\(v.prettyPrint(tab: tabCount + 1))"
+                returnString += "\(v.prettyPrint(indent: indent, tab: tabCount + 1))"
                 
                 if i < jsonArray.count - 1 {
                     returnString += ",\n"
@@ -356,7 +356,7 @@ extension JSON: CustomStringConvertible {
             }
             
             for _ in 0..<tabCount {
-                returnString += "\t"
+                returnString += indent
             }
             
             returnString += "]"
