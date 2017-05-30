@@ -11,8 +11,8 @@ import Foundation
 public typealias JsonDictionary = [String : JSON]
 
 public enum JSON {
-    case dictionary(JsonDictionary)
-    case array([JSON])
+    indirect case dictionary(JsonDictionary)
+    indirect case array([JSON])
     case string(String)
     case number(NSNumber)
     case bool(Bool)
